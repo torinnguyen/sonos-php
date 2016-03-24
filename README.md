@@ -6,7 +6,11 @@ A PHP class to control Sonos products
 How to use
 ==========
 
-See index.php or tts.php
+See index.php for basic interaction with Sonos class.
+
+Text-to-speech: 
+* http://your_server_ip_address/tts.php?message=hello
+* http://your_server_ip_address/tts.php?message=hello&volume=23
 
 
 Setup
