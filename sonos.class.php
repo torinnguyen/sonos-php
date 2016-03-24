@@ -51,6 +51,8 @@ class SonosPHPController
 	protected function Filter($subject,$pattern)
 	{
 		preg_match('/\<'.$pattern.'\>(.+)\<\/'.$pattern.'\>/',$subject,$matches); ///'/\<'.$pattern.'\>(.+)\<\/'.$pattern.'\>/'
+		if (!isset($matches[1]))
+			return null;
 		return $matches[1];
 	}
 
@@ -409,7 +411,7 @@ class SonosPHPController
 			ini_set('user_agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0');
 			$mp3 = "";
 			for ($i = 0; $i < count($words); $i++)
-				$mp3[$i] = file_get_contents('http://translate.google.com/translate_tts?q='.$words[$i].'&tl='.$lang);
+				$mp3[$i] = file_get_contents('http://translate.google.com/translate_tts?client=tw-ob&q='.$words[$i].'&tl='.$lang);
 
 			file_put_contents($file, $mp3);
 		}
@@ -423,7 +425,7 @@ class SonosPHPController
 	* @param int volume
 	* @param string language
 	*/
-	public function SongNameTTS($directory,$volume=0,$unmute=0,$lang='fr')
+	public function SongNameTTS($directory,$volume=0,$unmute=0,$lang='en')
 	{
 		$ThisSong = "Cette chanson s'appelle ";
 		$By = " de ";
@@ -447,7 +449,7 @@ class SonosPHPController
 	* @param int volume
 	* @param string language
 	*/
-	public function PlayTTS($message,$directory,$volume=0,$unmute=0,$lang='fr')
+	public function PlayTTS($message,$directory,$volume=0,$unmute=0,$lang='en')
 	{
 		$actual['track'] = $this->GetPositionInfo();
 		$actual['volume'] = $this->GetVolume();
