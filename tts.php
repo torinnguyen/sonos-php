@@ -13,15 +13,18 @@ http://raspberrypihq.com/how-to-share-a-folder-with-a-windows-computer-from-a-ra
 //-------------------------------------------------------------
 
 $unmute = true;
-$volume = 10;
+$volume = 50;
 $message = NULL;
+$lang = "en";
  
 if (isset($_REQUEST['volume'])) 
 	$volume = $_REQUEST['volume'];
 if (isset($_REQUEST['unmute'])) 
-	$volume = $_REQUEST['unmute'];
+	$unmute = $_REQUEST['unmute'];
 if (isset($_REQUEST['message'])) 
 	$message = $_REQUEST['message'];
+if (isset($_REQUEST['lang'])) 
+	$lang = $_REQUEST['lang'];
 
 if (empty($message)) {
 	die("Please provide 'message' parameter");
@@ -30,6 +33,8 @@ if (empty($message)) {
 //-------------------------------------------------------------
  
 $sonos = new SonosPHPController($sonos_ip);
-$sonos->PlayTTS($message, $sambaShare, $volume, $unmute);
+$volumeBefore = $sonos->GetVolume();
+$sonos->PlayTTS($message, $sambaShare, $volume, $unmute, $lang);
+$sonos->SetVolume($volumeBefore);
 
 ?>
