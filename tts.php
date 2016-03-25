@@ -8,6 +8,9 @@ $sambaShare = "192.168.1.111/sonostts"; 		// smb://xxxxxxxxxxxxx/audio/en
 /*
 Follow this guide to setup a Samba share for parent folder containing 'audio' folder
 http://raspberrypihq.com/how-to-share-a-folder-with-a-windows-computer-from-a-raspberry-pi/
+
+Language codes:
+https://cloud.google.com/translate/v2/using_rest
 */
 
 //-------------------------------------------------------------
